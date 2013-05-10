@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13675803354090" configfile="/SINDA-WEB/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="ManterUsuario" id="pf13675803708091" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13675803708092 pf13675803708093 pf13675803708094 pf13675803708095" inlinks="pf13675803708106 pf13675803708107" path="/ManterUsuario.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="servicos" id="pf13675803708108" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13675803708109 pf136758037081010" inlinks="pf13675803708092" path="/servicos.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Edicao" id="pf136758037081011" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf136758037081012 pf136758037081013" inlinks="pf13675803708093" path="/Edicao.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Visualizacao" id="pf136758037081014" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13675803708094" path="/Visualizacao.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Busca" id="pf136758037081015" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf136758037081116 pf136758037081117" inlinks="pf13675803708095" path="/busca.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="OperacaoSucesso" id="pf136758037081118" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf13675803708106" inlinks="pf13675803708109 pf136758037081012 pf136758037081119 pf136758037081120" path="/OperacaoSucesso.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="OperacaoFail" id="pf136758037081121" referenceLink="//@navigationRule.6/@navigationCase.1/@toViewId|" outlinks="pf13675803708107" inlinks="pf136758037081010 pf136758037081013 pf136758037081122 pf136758037081123" path="/OperacaoFail.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="BuscaPorPais" id="pf136758037081124" referenceLink="//@navigationRule.7/@navigationCase.1/@toViewId|" outlinks="pf136758037081119 pf136758037081122" inlinks="pf136758037081117" path="/buscaPorPais.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="BuscaPorNome" id="pf136758037081125" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf136758037081120 pf136758037081123" inlinks="pf136758037081116" path="/buscaPorNome.jsp"/>
+  <links id="pf13675803708092" target="pf13675803708108" source="pf13675803708091" outcome="Servicos"/>
+  <links id="pf13675803708093" target="pf136758037081011" source="pf13675803708091" outcome="Editar"/>
+  <links id="pf13675803708094" target="pf136758037081014" source="pf13675803708091" outcome="Visualizar"/>
+  <links id="pf13675803708095" target="pf136758037081015" source="pf13675803708091" outcome="Buscar"/>
+  <links id="pf13675803708106" target="pf13675803708091" source="pf136758037081118" outcome="manterUsuario"/>
+  <links id="pf13675803708107" target="pf13675803708091" source="pf136758037081121" outcome="manterUsuario"/>
+  <links id="pf13675803708109" target="pf136758037081118" source="pf13675803708108" outcome="sucesso"/>
+  <links id="pf136758037081010" target="pf136758037081121" source="pf13675803708108" outcome="erro"/>
+  <links id="pf136758037081012" target="pf136758037081118" source="pf136758037081011" outcome="sucesso"/>
+  <links id="pf136758037081013" target="pf136758037081121" source="pf136758037081011" outcome="erro"/>
+  <links id="pf136758037081119" target="pf136758037081118" source="pf136758037081124" outcome="sucesso"/>
+  <links id="pf136758037081122" target="pf136758037081121" source="pf136758037081124" outcome="erro"/>
+  <links id="pf136758037081120" target="pf136758037081118" source="pf136758037081125" outcome="sucesso"/>
+  <links id="pf136758037081123" target="pf136758037081121" source="pf136758037081125" outcome="erro"/>
+  <links id="pf136758037081116" target="pf136758037081125" source="pf136758037081015" outcome="BuscarPorNome"/>
+  <links id="pf136758037081117" target="pf136758037081124" source="pf136758037081015" outcome="BuscarPorPais"/>
+</pageflow:Pageflow>
