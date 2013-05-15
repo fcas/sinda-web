@@ -12,16 +12,39 @@
 	</jsp:text>
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>SINDA - Sistema Nacional de Dados Ambientais</title>
- <link rel="StyleSheet" type="text/css" href="css/estilos.css" media="screen" ></link>
+
+<link rel="StyleSheet" type="text/css" href="css/estilos.css"
+	media="screen"></link>
+<link rel="shortcut icon"
+	href="http://www.crn2.inpe.br/imagens/logo_mini.ico"></link>
+<link rel="icon" type="image/png"
+	href="http://www.crn2.inpe.br/imagens/logo_mini.png"></link>
+<!-- <script type="text/javascript" src="/webapp/resources/js/functions.js?ln=js"></script>  -->
+
 </head>
 <body>
 	<f:view>
+
+		<div id="divbody">
+			<div id="barra-brasil">
+				<div class="barra">
+					<ul>
+						<li><a href="http://www.acessoainformacao.gov.br/" class="ai"
+							title="Acesso a informaçao" rel="externo" target="_blank">www.sic.gov.br</a></li>
+						<li><a href="http://www.brasil.gov.br/" class="brasilgov"
+							title="Portal de Estado do Brasil" rel="externo" target="_blank">www.brasil.gov.br</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 		<h:form>
 			<h:commandButton action="/ManterUsuario.jsp" value="Voltar"></h:commandButton>
 			<br></br>
 			<br></br>
+
 		</h:form>
 		<h1>Séries históricas completas de dados:</h1>
 		<h4>São fornecidas séries de dados pré-validados.</h4>
