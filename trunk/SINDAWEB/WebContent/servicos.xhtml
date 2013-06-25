@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Início</title>
+<link rel="StyleSheet" type="text/css" href="css/estilos.css" />
+</h:head>
+<body>
+<f:view>
+		<div id="divbody">
+			<div id="barra-brasil">
+				<div class="barra">
+					<ul>
+						<li><a href="http://www.acessoainformacao.gov.br/" class="ai"
+							title="Acesso a informaçao" rel="externo" target="_blank">www.sic.gov.br</a></li>
+						<li><a href="http://www.brasil.gov.br/" class="brasilgov"
+							title="Portal de Estado do Brasil" rel="externo" target="_blank">www.brasil.gov.br</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<h1>Séries históricas completas de dados</h1>
+		<h4>São fornecidas séries de dados pré-validados.</h4>
+		<h4>Instruções: Para solicitá-las, use o formulário abaixo.</h4>
+		<h:form>
+			<p:growl id="growl" showSummary="false" showDetail="true"
+				sticky="true" />
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Nome: " for="nome_fisico" />
+				<br></br>
+				<p:inputText label="NomeFisico" id="nome_fisico" required="true"
+					requiredMessage="Informe o seu nome" size="50"
+					value="#{controllerServicos.solicitacao.nome_fisico}">
+					<f:validator validatorId="nomeValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Empresa ou instituição: " for="nome_juridico" />
+				<br></br>
+				<p:inputText label="NomeJuridico" id="nome_juridico" required="true"
+					requiredMessage="Informe o nome da Empresa ou Instituição"
+					size="50" value="#{controllerServicos.solicitacao.nome_juridico}">
+					<f:validator validatorId="nomeValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Endereço: " for="endereco" />
+				<br></br>
+				<p:inputText label="Endereço" id="endereco" required="true"
+					requiredMessage="Informe o seu Endereço" size="50"
+					value="#{controllerServicos.solicitacao.endereco}">
+					<f:validator validatorId="nomeValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Telefone: " for="telefone" />
+				<br></br>
+				<p:inputText label="Telefone" id="telefone" required="true"
+					requiredMessage="Informe o seu telefone" size="50"
+					value="#{controllerServicos.solicitacao.telefone}">
+					<f:validator validatorId="telefoneValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Email: " for="email" />
+				<br></br>
+				<p:inputText label="Email" id="email" required="true"
+					requiredMessage="Informe o seu email" size="50"
+					value="#{controllerServicos.solicitacao.email}">
+					<f:validator validatorId="emailValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="ID da PCD: " for="id_pcd" />
+				<br></br>
+				<p:inputText label="ID_PCD" id="id_pcd" required="true" size="50"
+					value="#{controllerServicos.solicitacao.ID_PCD}">
+					<f:validateLength minimum="4" maximum="6" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Nome do sensor: " for="nome_sensor" />
+				<br></br>
+				<p:inputText label="NomeSensor" id="nome_sensor" required="true"
+					requiredMessage="Informe o nome do sensor" size="50"
+					value="#{controllerServicos.solicitacao.sensores}">
+					<f:validator validatorId="nomeValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Período inicial: " for="periodo_inicial" />
+				<br></br>
+				<p:inputText label="PeriodoInicial" id="periodo_inicial"
+					requiredMessage="Informe o período inicial" size="50"
+					required="true"
+					value="#{controllerServicos.solicitacao.periodo_inicio}">
+					<f:validator validatorId="dataValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Período final: " for="periodo_final" />
+				<br></br>
+				<p:inputText label="PeriodoFinal" id="periodo_final" required="true"
+					requiredMessage="Informe o período final" size="50"
+					value="#{controllerServicos.solicitacao.periodo_fim}">
+					<f:validator validatorId="dataValidator" />
+				</p:inputText>
+				<br></br>
+
+				<p:outputLabel value="Finalidade de uso: "></p:outputLabel>
+				<br></br>
+				<p:inputTextarea rows="6" cols="52"
+					value="#{controllerServicos.solicitacao.finalidade}"></p:inputTextarea>
+				<br></br>
+
+				<br></br>
+				<br></br>
+				<p:commandButton action="#{controllerServicos.cadastrarSolicitacao}"
+					value="Cadastrar" ajax="false" update="growl"></p:commandButton>
+			</h:panelGrid>
+		</h:form>
+
+	</f:view>
+
+</body>
+</html>
