@@ -1,6 +1,6 @@
 package model;
 
-public class Solicitacao {
+public class Consulta {
 	
 	private String nome_fisico = "";
 	private String nome_juridico = ""; 
@@ -16,11 +16,11 @@ public class Solicitacao {
 	private String senha;
 	private boolean selecionado;
 	
-	public Solicitacao(){
+	public Consulta(){
 		
 	}
 
-	public Solicitacao(String nome_fisico, String nome_juridico, String endereco,
+	public Consulta(String nome_fisico, String nome_juridico, String endereco,
 			int telefone, String email, String finalidade, int id_pcd,
 			String sensores, String periodo_inicio, String periodo_fim,
 			String login, String senha, boolean selecionado) {

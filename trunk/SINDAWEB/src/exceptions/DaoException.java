@@ -3,10 +3,10 @@ package exceptions;
 @SuppressWarnings("serial")
 public class DaoException extends Exception {
 	
-	String desc;
+	Exception desc;
 	
-	public DaoException (String desc) {
-		this.desc = desc;
+	public DaoException (Exception e) {
+		this.desc = e;
 	}
 
 }

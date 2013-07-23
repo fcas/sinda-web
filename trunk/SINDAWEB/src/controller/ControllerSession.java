@@ -1,12 +1,10 @@
 package controller;
 
-import model.Solicitacao;
-import model.IServicoUsuario;
-import model.ServicoUsuario;
+import model.Consulta;
 
 public class ControllerSession {
 
-	Solicitacao usuarioAtual;
+	Consulta usuarioAtual;
 	private String login, senha;
 	IServicoUsuario servicoUsuario = ServicoUsuario
 			.getInstance();
@@ -20,7 +18,7 @@ public class ControllerSession {
 			return "erro";
 	}
 	
-	public Solicitacao getUsuarioAtual() {
+	public Consulta getUsuarioAtual() {
 		return usuarioAtual;
 	}
 	public String getLogin() {
@@ -29,7 +27,7 @@ public class ControllerSession {
 	public String getSenha() {
 		return senha;
 	}
-	public void setUsuarioAtual(Solicitacao usuarioAtual) {
+	public void setUsuarioAtual(Consulta usuarioAtual) {
 		this.usuarioAtual = usuarioAtual;
 	}
 	public void setLogin(String login) {
