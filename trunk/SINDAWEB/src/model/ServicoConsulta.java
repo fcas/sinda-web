@@ -16,7 +16,7 @@ public class ServicoConsulta implements IServicoConsulta {
 	private IDAOConsulta daoConsulta;
 
 	public ServicoConsulta() {
-		this.daoConsulta = new DAOConsulta(null);
+		this.daoConsulta = new DAOConsulta();
 	}
 
 	public static ServicoConsulta getInstance() {

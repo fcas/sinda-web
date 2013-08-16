@@ -5,8 +5,8 @@ import model.URI;
 
 public class DAOConsulta extends DAOGenericoREST<Consulta> implements IDAOConsulta{
 
-	public DAOConsulta(URI uri) {
-		super(uri);
+	public DAOConsulta() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
