@@ -7,7 +7,7 @@ public class URI {
 	private String start;
 	private String end;
 	private String format;
-	private String URI = "http://spada.crn2.inpe.br:8080/spada/consulta/dados?";
+	private String URI = "http://spada.crn2.inpe.br:8080/spada/consulta/";
 	
 	public void setSensor(String sensor) {
 		this.sensor = sensor;
@@ -30,7 +30,7 @@ public class URI {
 	}
 	
 	public String getURIpcd() {
-		return URI+"pcd="+pcd;
+		return URI+"pcd?pcd="+pcd;
 	}
 	
 	public String getURIfull() {

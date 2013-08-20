@@ -46,56 +46,42 @@ public class DAOGenericoREST<T> implements IDaoGenerico<T> {
 
 	public DAOGenericoREST() {
 		
-		
 	}
 	
 	private static String readAll(Reader rd) throws IOException {
-	    StringBuilder sb = new StringBuilder();
-	    int cp;
-	    while ((cp = rd.read()) != -1) {
-	      sb.append((char) cp);
-	    }
-	    return sb.toString();
-	  }
+		StringBuilder sb = new StringBuilder();
+		int cp;
+		while ((cp = rd.read()) != -1) {
+			sb.append((char) cp);
+		}
+		return sb.toString();
+	}
 
 	@Override
-	public List<T> consulta(String pcd, String sensor, String start,
+	public JSONObject consulta(String pcd, String sensor, String start,
 			String end, String formato) throws JsonParseException, IOException, JSONException {
 		
 		URI uri = new URI();
 		uri.setPcd(pcd);
-//		
-//	JsonFactory f = new JsonFactory();
-//	JsonParser jp = f.createParser(new File ("uri.getURIpcd()"));
-//		
-//		System.out.println(jp.hasTextCharacters());
-		
-		InputStream is = new URL(uri.getURIpcd()).openStream();
-	    try {
-	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-	      String jsonText = readAll(rd);
-	      JSONObject json = new JSONObject(jsonText);
-	      System.out.println(json);
-	    } finally {
-	      is.close();
-	    }
-	    
-	 
 
-		return null;
+		InputStream is = new URL(uri.getURIpcd()).openStream();
+		try {
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
+					Charset.forName("UTF-8")));
+			String jsonText = readAll(rd);
+			JSONObject json = new JSONObject(jsonText);
+			return json;
+		} finally {
+			is.close();
+		}
 
 	}
-
-//	private Document getDocumentFromURI(String uri)
-//			throws ParserConfigurationException, SAXException, IOException {
-//		
-//		return doc;
-//	}
 	
 	public static void main(String[] args) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException {
 		DAOGenericoREST<Consulta> dao = new DAOGenericoREST<Consulta>();
 		
-		dao.consulta("30800", "sensor", "start", "end", "formato");
+		JSONObject json = dao.consulta("30800", "sensor", "start", "end", "formato");
+		System.out.println(json.get("pcd_id"));
 	}
 
 }

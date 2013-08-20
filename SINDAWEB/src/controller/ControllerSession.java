@@ -1,41 +1,49 @@
 package controller;
 
-import model.Consulta;
+import model.Formulario;
+import model.IServicoSolicitacao;
+import model.ServicoSolicitacao;
 
+/**
+ * @author felipecordeiro
+ * Controller responsável pelo gerenciamento de sessão do usuário
+ */
 public class ControllerSession {
 
-	Consulta usuarioAtual;
+	Formulario usuarioAtual;
 	private String login, senha;
-	IServicoUsuario servicoUsuario = ServicoUsuario
-			.getInstance();
-	
-	public String autenticar()
-	{
+	IServicoSolicitacao servicoUsuario = ServicoSolicitacao.getInstance();
+
+	public String autenticar() {
 		usuarioAtual = servicoUsuario.autenticar(login, senha);
 		if (usuarioAtual != null)
 			return "sucesso";
 		else
 			return "erro";
 	}
-	
-	public Consulta getUsuarioAtual() {
+
+	public Formulario getUsuarioAtual() {
 		return usuarioAtual;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
-	public void setUsuarioAtual(Consulta usuarioAtual) {
+
+	public void setUsuarioAtual(Formulario usuarioAtual) {
 		this.usuarioAtual = usuarioAtual;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+
 }
