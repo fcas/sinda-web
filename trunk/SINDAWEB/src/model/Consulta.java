@@ -144,7 +144,4 @@ public class Consulta {
 		this.selecionado = selecionado;
 	}
 
-
-	
-
 }

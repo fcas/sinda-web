@@ -1,7 +1,6 @@
 package dao;
 
 import model.Consulta;
-import model.URI;
 
 public class DAOConsulta extends DAOGenericoREST<Consulta> implements IDAOConsulta{
 

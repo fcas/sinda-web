@@ -32,7 +32,7 @@
 				<br></br>
 				<p:inputText label="NomeFisico" id="nome_fisico" required="true"
 					requiredMessage="Informe o seu nome" size="50"
-					value="#{controllerServicos.solicitacao.nome_fisico}">
+					value="#{controllerSolicitacao.solicitacao.nome_fisico}">
 					<f:validator validatorId="nomeValidator" />
 				</p:inputText>
 				<br></br>
@@ -41,7 +41,7 @@
 				<br></br>
 				<p:inputText label="NomeJuridico" id="nome_juridico" required="true"
 					requiredMessage="Informe o nome da Empresa ou Instituição"
-					size="50" value="#{controllerServicos.solicitacao.nome_juridico}">
+					size="50" value="#{controllerSolicitacao.solicitacao.nome_juridico}">
 					<f:validator validatorId="nomeValidator" />
 				</p:inputText>
 				<br></br>
@@ -50,7 +50,7 @@
 				<br></br>
 				<p:inputText label="Endereço" id="endereco" required="true"
 					requiredMessage="Informe o seu Endereço" size="50"
-					value="#{controllerServicos.solicitacao.endereco}">
+					value="#{controllerSolicitacao.solicitacao.endereco}">
 					<f:validator validatorId="nomeValidator" />
 				</p:inputText>
 				<br></br>
@@ -59,7 +59,7 @@
 				<br></br>
 				<p:inputText label="Telefone" id="telefone" required="true"
 					requiredMessage="Informe o seu telefone" size="50"
-					value="#{controllerServicos.solicitacao.telefone}">
+					value="#{controllerSolicitacao.solicitacao.telefone}">
 					<f:validator validatorId="telefoneValidator" />
 				</p:inputText>
 				<br></br>
@@ -68,7 +68,7 @@
 				<br></br>
 				<p:inputText label="Email" id="email" required="true"
 					requiredMessage="Informe o seu email" size="50"
-					value="#{controllerServicos.solicitacao.email}">
+					value="#{controllerSolicitacao.solicitacao.email}">
 					<f:validator validatorId="emailValidator" />
 				</p:inputText>
 				<br></br>
@@ -76,7 +76,7 @@
 				<p:outputLabel value="ID da PCD: " for="id_pcd" />
 				<br></br>
 				<p:inputText label="ID_PCD" id="id_pcd" required="true" size="50"
-					value="#{controllerServicos.solicitacao.ID_PCD}">
+					value="#{controllerSolicitacao.solicitacao.ID_PCD}">
 					<f:validateLength minimum="4" maximum="6" />
 				</p:inputText>
 				<br></br>
@@ -85,7 +85,7 @@
 				<br></br>
 				<p:inputText label="NomeSensor" id="nome_sensor" required="true"
 					requiredMessage="Informe o nome do sensor" size="50"
-					value="#{controllerServicos.solicitacao.sensores}">
+					value="#{controllerSolicitacao.solicitacao.sensores}">
 					<f:validator validatorId="nomeValidator" />
 				</p:inputText>
 				<br></br>
@@ -95,7 +95,7 @@
 				<p:inputText label="PeriodoInicial" id="periodo_inicial"
 					requiredMessage="Informe o período inicial" size="50"
 					required="true"
-					value="#{controllerServicos.solicitacao.periodo_inicio}">
+					value="#{controllerSolicitacao.solicitacao.periodo_inicio}">
 					<f:validator validatorId="dataValidator" />
 				</p:inputText>
 				<br></br>
@@ -104,7 +104,7 @@
 				<br></br>
 				<p:inputText label="PeriodoFinal" id="periodo_final" required="true"
 					requiredMessage="Informe o período final" size="50"
-					value="#{controllerServicos.solicitacao.periodo_fim}">
+					value="#{controllerSolicitacao.solicitacao.periodo_fim}">
 					<f:validator validatorId="dataValidator" />
 				</p:inputText>
 				<br></br>
@@ -112,12 +112,12 @@
 				<p:outputLabel value="Finalidade de uso: "></p:outputLabel>
 				<br></br>
 				<p:inputTextarea rows="6" cols="52"
-					value="#{controllerServicos.solicitacao.finalidade}"></p:inputTextarea>
+					value="#{controllerSolicitacao.solicitacao.finalidade}"></p:inputTextarea>
 				<br></br>
 
 				<br></br>
 				<br></br>
-				<p:commandButton action="#{controllerServicos.cadastrarSolicitacao}"
+				<p:commandButton action="#{controllerSolicitacao.cadastrarSolicitacao}"
 					value="Cadastrar" ajax="false" update="growl"></p:commandButton>
 			</h:panelGrid>
 		</h:form>

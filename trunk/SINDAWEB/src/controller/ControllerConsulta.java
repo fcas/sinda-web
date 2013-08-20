@@ -9,35 +9,39 @@ import model.Consulta;
 import model.IServicoConsulta;
 import model.ServicoConsulta;
 
+/**
+ * @author felipecordeiro
+ * Controller responsável pelas consultas.
+ * 
+ */
+
 @SessionScoped
-@ManagedBean(name="controllerServicos")
-public class ControllerServicos {
+@ManagedBean(name = "controllerServicos")
+public class ControllerConsulta {
 
 	@SuppressWarnings("unused")
 	private Consulta consulta;
 	@SuppressWarnings("rawtypes")
 	private ArrayList resultadoConsultas;
 	private String query;
-	IServicoConsulta servicoConsulta = ServicoConsulta
-			.getInstance();
-	
-	public ControllerServicos() {
+	IServicoConsulta servicoConsulta = ServicoConsulta.getInstance();
+
+	public ControllerConsulta() {
 		consulta = new Consulta();
 		resultadoConsultas = new ArrayList<Consulta>();
 	}
-	
+
 	public String consultaHidrologica() {
 		query = "";
 		return "Hidrologica";
 	}
-	
+
 	public String fazerConsultaHidrologica() {
 
 		String action = "";
 		resultadoConsultas = servicoConsulta.consultaHidrologicos();
 		return action;
 	}
-	
 
 	public void setConsulta(Consulta consulta) {
 		this.consulta = consulta;

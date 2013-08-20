@@ -1,9 +1,8 @@
 package dao;
 
 import java.io.IOException;
-import java.util.List;
-
 import org.primefaces.json.JSONException;
+import org.primefaces.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
@@ -28,6 +27,6 @@ public interface IDaoGenerico<T> {
 		 * @throws JSONException 
 		 */
 	
-      public List<T> consulta(String pcd, String sensor, String start, String end, String formato) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException;
+      public JSONObject consulta(String pcd, String sensor, String start, String end, String formato) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException;
       
 }
