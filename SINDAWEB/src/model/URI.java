@@ -16,6 +16,10 @@ public class URI {
 	public void setPcd(String pcd) {
 		this.pcd = pcd;
 	}
+	
+	public String getPcd() {
+		return pcd;
+	}
 
 	public void setStart(String start) {
 		this.start = start;
