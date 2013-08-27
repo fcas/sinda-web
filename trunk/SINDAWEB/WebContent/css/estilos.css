@@ -757,3 +757,15 @@ div.esconde {
 	padding-top: 4px;
 	text-align: center;
 }
+
+a.logo {
+	background: url(../imagens/topo_crn.jpg) no-repeat;
+}
+
+#heading a.logo  {
+	padding-bottom: 10px;
+	display:block;
+	font-size:0;
+	height:130px;
+	width:990px;
+}

@@ -1,7 +1,11 @@
 package model;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+
+import org.primefaces.json.JSONException;
+
+import com.fasterxml.jackson.core.JsonParseException;
 
 import dao.ConsultaSemResultadoException;
 import exceptions.DaoException;
@@ -9,19 +13,6 @@ import exceptions.DaoException;
 public interface IServicoConsulta {
 
 	@SuppressWarnings("rawtypes")
-	public List consulta(String pcd, String sensor, String start, String end,
-			String formato) throws DaoException, ConsultaSemResultadoException;
-
-	public String consultaRadicaoSolar();
-
-	public String consultaRadiacaoBoia();
-
-	public String consultaMeterologicos();
-
-	public ArrayList<Consulta> consultaHidrologicos();
-
-	public String consultaBoias();
-
-	public String consultaAgrometrologicos();
+	public List consulta(URI uri) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException;
 
 }
