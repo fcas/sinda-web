@@ -10,11 +10,15 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.Latitude;
+import model.Longitude;
 import model.PCD;
 import model.Proprietario;
+import model.Sensor;
 import model.ServicoConsulta;
 import model.URI;
 
@@ -26,6 +30,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
 import org.w3c.dom.Document;
@@ -44,11 +49,13 @@ import exceptions.DaoException;
 @SuppressWarnings("unused")
 public class DaoREST implements IDaoREST {
 
+	private PCD pcd;
+	private Sensor sensor = new Sensor();
 	private List<PCD> pcds;
 	private static DaoREST singleton = null;
 
 	public DaoREST() {
-
+		this.pcd = new PCD();
 	}
 
 	public static DaoREST getInstance() {
@@ -70,7 +77,7 @@ public class DaoREST implements IDaoREST {
 		return sb.toString();
 	}
 
-	public List<PCD> consulta(URI uri) throws JsonParseException, IOException,
+	public PCD consulta(URI uri) throws JsonParseException, IOException,
 			JSONException {
 
 		InputStream is = new URL(uri.getURIpcd()).openStream();
@@ -79,49 +86,99 @@ public class DaoREST implements IDaoREST {
 					Charset.forName("UTF-8")));
 			String jsonText = readAll(rd);
 			JSONObject json = new JSONObject(jsonText);
-			List<PCD> pcds = processar(json);
+			PCD pcds = processar_pcd(json);
 			return pcds;
 		} finally {
 			is.close();
 		}
 
 	}
-	
-	private List<PCD> processar(JSONObject json) throws JSONException {
-		
-		PCD pcd = new PCD();
-		Proprietario proprietario = new Proprietario();
-		
-		pcd.setPcd_id(Double.parseDouble(json.get("pcd_id").toString()));
-		pcd.setWmo_flu(json.get("wmo_flu").toString());
-		
-		proprietario.setProprietario(json.getJSONObject("proprietario").getString(("proprietario")));
-		proprietario.setResponsavel(json.getJSONObject("proprietario").getString("responsavel"));
-		proprietario.setCia_orgao(json.getJSONObject("proprietario").getString("cia_orgao"));
-		proprietario.setDepto_secao(json.getJSONObject("proprietario").getString("depto_secao"));
-		proprietario.setLogradouro(json.getJSONObject("proprietario").getString("logradouro"));
-		proprietario.setCriacao(json.getJSONObject("proprietario").getString("criacao"));
-		
-		pcd.setProprietario(proprietario);
-		
-		pcd.setLocal(json.get("local").toString());
-		pcd.setEstado(json.get("estado").toString());
-		pcd.setEm_operacao((Boolean.parseBoolean(json.get("em_operacao").toString())));
-		
-		pcd.setPotencia(Double.parseDouble((json.get("potencia").toString())));
-		pcd.setCanais(Double.parseDouble(json.get("canais").toString()));
-		
-  
-		return null;
+
+	private PCD processar_pcd(JSONObject json) throws JSONException {
+
+		pcd.setPcd_id(json.getDouble("pcd_id"));
+		pcd.setWmo_flu(json.getString("wmo_flu"));
+
+		pcd.getProprietario().setProprietario(
+				json.getJSONObject("proprietario").getString(("proprietario")));
+		pcd.getProprietario().setResponsavel(
+				json.getJSONObject("proprietario").getString("responsavel"));
+		pcd.getProprietario().setCia_orgao(
+				json.getJSONObject("proprietario").getString("cia_orgao"));
+		pcd.getProprietario().setDepto_secao(
+				json.getJSONObject("proprietario").getString("depto_secao"));
+		pcd.getProprietario().setLogradouro(
+				json.getJSONObject("proprietario").getString("logradouro"));
+		pcd.getProprietario().setCriacao(
+				json.getJSONObject("proprietario").getString("criacao"));
+
+		pcd.setLocal(json.getString("local"));
+		pcd.setEstado(json.getString("estado"));
+		pcd.setEm_operacao(json.getBoolean("em_operacao"));
+
+		pcd.setPotencia(json.getDouble("potencia"));
+		pcd.setCanais(json.getDouble("canais"));
+
+		pcd.getLatitude().setGrau(
+				json.getJSONObject("latitude").getDouble(("grau")));
+		pcd.getLatitude().setMinuto(
+				json.getJSONObject("latitude").getDouble(("minuto")));
+		pcd.getLatitude().setSegundo(
+				json.getJSONObject("latitude").getDouble(("segundo")));
+		pcd.getLatitude().setDirecao(
+				(json.getJSONObject("latitude").getString(("direcao"))));
+
+		pcd.getLongitude().setGrau(
+				json.getJSONObject("longitude").getDouble(("grau")));
+		pcd.getLongitude().setMininuto(
+				json.getJSONObject("longitude").getDouble(("minuto")));
+		pcd.getLongitude().setSegundo(
+				json.getJSONObject("longitude").getDouble(("segundo")));
+		pcd.getLongitude().setDirecao(
+				(json.getJSONObject("longitude").getString(("direcao"))));
+
+		pcd.setAltitude(json.getDouble("altitude"));
+		pcd.setFabricante(((json.getString("fabricante"))));
+		pcd.setModelo(((json.getString("modelo"))));
+		pcd.setVersao(((json.getString("versao"))));
+		pcd.setInfo(((json.getString("info"))));
+		pcd.setCadastro(((json.getString("cadastro"))));
+
+		processar_sensores(json.getJSONArray("sensores"));
+
+		return pcd;
+	}
+
+	private Sensor processar_sensores(JSONArray sensores) throws JSONException {
+
+		for (int i = 0; i < sensores.length(); i++) {
+			sensor.setSensor_id(sensores.getJSONObject(i).getDouble(
+					("sensor_id")));
+			sensor.setDescricao(sensores.getJSONObject(i).getString(
+					("descricao")));
+			sensor.setUnidade(sensores.getJSONObject(i).getString(("unidade")));
+			sensor.setBits(sensores.getJSONObject(i).getDouble(("bits")));
+			sensor.setIntervalo(sensores.getJSONObject(i).getDouble(
+					("intervalo")));
+			sensor.setShift(sensores.getJSONObject(i).getDouble(("shift")));
+			sensor.setInicioBits(sensores.getJSONObject(i).getDouble(
+					("inicioBits")));
+			sensor.setDataHoraReferencia(sensores.getJSONObject(i).getString(
+					("dataHoraReferencia")));
+			sensor.setPosicao(sensores.getJSONObject(i).getString(("posicao")));
+			pcd.getSensores().put((double) i, sensor);
+		}
+
+		return sensor;
 	}
 
 	public static void main(String[] args) throws DaoException,
 			ConsultaSemResultadoException, JsonParseException, IOException,
 			JSONException {
 
-//		JSONObject json = DaoREST.getInstance().consulta("30800", "sensor",
-//				"start", "end", "formato");
-		
+		// JSONObject json = DaoREST.getInstance().consulta("30800", "sensor",
+		// "start", "end", "formato");
+
 	}
 
 }
