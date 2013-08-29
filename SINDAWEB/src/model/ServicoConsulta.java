@@ -1,7 +1,6 @@
 package model;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.primefaces.json.JSONException;
 
@@ -33,9 +32,8 @@ public class ServicoConsulta implements IServicoConsulta {
 
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	public List consulta(URI uri) throws DaoException,
+	public PCD consulta(URI uri) throws DaoException,
 			ConsultaSemResultadoException, JsonParseException, IOException, JSONException {
 
 		return DaoREST.getInstance().consulta(uri);

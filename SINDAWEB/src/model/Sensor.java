@@ -2,22 +2,21 @@ package model;
 
 public class Sensor {
 
-	private int sensor_id;
+	private Double sensor_id;
 	private String descricao;
 	private String unidade;
-	private int bits;
-	private int intervalo;
-	private int shift;
-	private int inicioBits;
-	private Calibrador calibrador;
+	private Double bits;
+	private Double intervalo;
+	private Double shift;
+	private Double inicioBits;
 	private String dataHoraReferencia;
 	private String posicao;
 
-	public int getSensor_id() {
+	public Double getSensor_id() {
 		return sensor_id;
 	}
 
-	public void setSensor_id(int sensor_id) {
+	public void setSensor_id(Double sensor_id) {
 		this.sensor_id = sensor_id;
 	}
 
@@ -37,44 +36,36 @@ public class Sensor {
 		this.unidade = unidade;
 	}
 
-	public int getBits() {
+	public Double getBits() {
 		return bits;
 	}
 
-	public void setBits(int bits) {
+	public void setBits(Double bits) {
 		this.bits = bits;
 	}
 
-	public int getIntervalo() {
+	public Double getIntervalo() {
 		return intervalo;
 	}
 
-	public void setIntervalo(int intervalo) {
+	public void setIntervalo(Double intervalo) {
 		this.intervalo = intervalo;
 	}
 
-	public int getShift() {
+	public Double getShift() {
 		return shift;
 	}
 
-	public void setShift(int shift) {
+	public void setShift(Double shift) {
 		this.shift = shift;
 	}
 
-	public int getInicioBits() {
+	public Double getInicioBits() {
 		return inicioBits;
 	}
 
-	public void setInicioBits(int inicioBits) {
+	public void setInicioBits(Double inicioBits) {
 		this.inicioBits = inicioBits;
-	}
-
-	public Calibrador getCalibrador() {
-		return calibrador;
-	}
-
-	public void setCalibrador(Calibrador calibrador) {
-		this.calibrador = calibrador;
 	}
 
 	public String getDataHoraReferencia() {
