@@ -1,6 +1,7 @@
 package model;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.primefaces.json.JSONException;
 
@@ -11,6 +12,6 @@ import exceptions.DaoException;
 
 public interface IServicoConsulta {
 
-	public PCD consulta(URI uri) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException;
+	public List<PCD> consulta(URI uri) throws DaoException, ConsultaSemResultadoException, JsonParseException, IOException, JSONException;
 
 }
