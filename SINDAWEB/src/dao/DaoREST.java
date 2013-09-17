@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,12 +51,13 @@ import exceptions.DaoException;
 public class DaoREST implements IDaoREST {
 
 	private PCD pcd;
-	private Sensor sensor = new Sensor();
-	private List<PCD> pcds;
+	private List<PCD> list_pcds;
 	private static DaoREST singleton = null;
+	private Sensor sensor;
 
 	public DaoREST() {
 		this.pcd = new PCD();
+		this.list_pcds = new ArrayList<PCD>();
 	}
 
 	public static DaoREST getInstance() {
@@ -77,24 +79,22 @@ public class DaoREST implements IDaoREST {
 		return sb.toString();
 	}
 
-	public PCD consulta(URI uri) throws JsonParseException, IOException,
+	public List<PCD> consulta(URI uri) throws JsonParseException, IOException,
 			JSONException {
-
 		InputStream is = new URL(uri.getURIpcd()).openStream();
 		try {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
 					Charset.forName("UTF-8")));
 			String jsonText = readAll(rd);
 			JSONObject json = new JSONObject(jsonText);
-			PCD pcds = processar_pcd(json);
-			return pcds;
+			return processar_pcd(json);
 		} finally {
 			is.close();
 		}
 
 	}
 
-	private PCD processar_pcd(JSONObject json) throws JSONException {
+	private List<PCD> processar_pcd(JSONObject json) throws JSONException {
 
 		pcd.setPcd_id(json.getDouble("pcd_id"));
 		pcd.setWmo_flu(json.getString("wmo_flu"));
@@ -144,16 +144,19 @@ public class DaoREST implements IDaoREST {
 		pcd.setInfo(((json.getString("info"))));
 		pcd.setCadastro(((json.getString("cadastro"))));
 
-		processar_sensores(json.getJSONArray("sensores"));
+		pcd.setSensores(processar_sensores(json.getJSONArray("sensores")));
 
-		return pcd;
+		list_pcds.add(pcd);
+
+		return list_pcds;
 	}
 
-	private Sensor processar_sensores(JSONArray sensores) throws JSONException {
+	private HashMap<Integer, Sensor> processar_sensores(JSONArray sensores)
+			throws JSONException {
 
 		for (int i = 0; i < sensores.length(); i++) {
-			sensor.setSensor_id(sensores.getJSONObject(i).getDouble(
-					("sensor_id")));
+			sensor = new Sensor();
+			sensor.setSensor_id(sensores.getJSONObject(i).getInt(("sensor_id")));
 			sensor.setDescricao(sensores.getJSONObject(i).getString(
 					("descricao")));
 			sensor.setUnidade(sensores.getJSONObject(i).getString(("unidade")));
@@ -166,10 +169,10 @@ public class DaoREST implements IDaoREST {
 			sensor.setDataHoraReferencia(sensores.getJSONObject(i).getString(
 					("dataHoraReferencia")));
 			sensor.setPosicao(sensores.getJSONObject(i).getString(("posicao")));
-			pcd.getSensores().put((double) i, sensor);
+			pcd.getSensores().put(i, sensor);
 		}
 
-		return sensor;
+		return pcd.getSensores();
 	}
 
 	public static void main(String[] args) throws DaoException,

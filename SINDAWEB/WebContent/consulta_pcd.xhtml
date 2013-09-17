@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns:p="http://primefaces.org/ui"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Início</title>
 	<link rel="StyleSheet" type="text/css" href="css/estilos.css" />
@@ -40,10 +42,26 @@
 				<br></br>
 				
 				<p:commandButton actionListener="#{controllerConsulta.consultar_pcd}"
-					value="Consultar PCD" ajax="false" update="growl"></p:commandButton>
-				
+					value="Consultar PCD" ajax="false" update="growl"></p:commandButton>		
 				</h:panelGrid>
 		</h:form>
+		
+		<h:panelGroup id="panel" >
+				<h1>____________________________________________</h1><br/>
+				<h:form id="formularioRender">
+				<p:growl id="growl" showSummary="false" showDetail="true" sticky="true" />
+				<table align="center" border="0" cellspacing="0" cellpadding="10">
+					<tr><th></th><th>ID da PCD</th><th>Sobrenome</th><th>Email</th></tr>
+					<c:forEach items="#{controllerConsulta.list_pcds}" var="pcd">
+						<tr>
+						<td><p:outputLabel value="#{pcd.pcd_id}"></p:outputLabel></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<p:commandButton actionListener="#{controllerEngajador.deletar}"
+						value="Deletar itens selecionados" ajax="true"  update=":formularioRender, :panel"></p:commandButton>
+				</h:form>
+			</h:panelGroup>
 
 </h:body>
 </html>

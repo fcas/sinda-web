@@ -20,13 +20,13 @@ public class PCD {
 	private String versao;
 	private String info;
 	private String cadastro;
-	private HashMap<Double, Sensor> sensores;
+	private HashMap<Integer, Sensor> sensores;
 
 	public PCD() {
 		this.proprietario = new Proprietario();
 		this.latitude = new Latitude();
 		this.longitude = new Longitude();
-		this.sensores = new HashMap<Double, Sensor>();
+		this.sensores = new HashMap<Integer, Sensor>();
 
 	}
 
@@ -158,11 +158,11 @@ public class PCD {
 		this.cadastro = cadastro;
 	}
 
-	public HashMap<Double, Sensor> getSensores() {
+	public HashMap<Integer, Sensor> getSensores() {
 		return sensores;
 	}
 
-	public void setSensores(HashMap<Double, Sensor> sensores) {
+	public void setSensores(HashMap<Integer, Sensor> sensores) {
 		this.sensores = sensores;
 	}
 

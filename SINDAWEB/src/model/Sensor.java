@@ -2,7 +2,7 @@ package model;
 
 public class Sensor {
 
-	private Double sensor_id;
+	private int sensor_id;
 	private String descricao;
 	private String unidade;
 	private Double bits;
@@ -12,11 +12,11 @@ public class Sensor {
 	private String dataHoraReferencia;
 	private String posicao;
 
-	public Double getSensor_id() {
+	public int getSensor_id() {
 		return sensor_id;
 	}
 
-	public void setSensor_id(Double sensor_id) {
+	public void setSensor_id(int sensor_id) {
 		this.sensor_id = sensor_id;
 	}
 

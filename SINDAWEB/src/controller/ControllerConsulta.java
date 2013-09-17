@@ -17,7 +17,6 @@ import exceptions.DaoException;
 import model.IServicoConsulta;
 import model.PCD;
 import model.Proprietario;
-import model.Sensor;
 import model.ServicoConsulta;
 import model.URI;
 
@@ -30,25 +29,18 @@ import model.URI;
 @ManagedBean(name = "controllerConsulta")
 public class ControllerConsulta {
 	private URI uri;
-	private List<PCD> pcds;
-	private List<Sensor> sensoresSelecionados;
-	private ArrayList<Boolean> selecionados;
+	private PCD pcd;
+	private List <PCD> list_pcds; 
 	private Proprietario proprietario;
 	private boolean buscou = false;
 	IServicoConsulta servicoConsulta = ServicoConsulta.getInstance();
 	FacesContext context = FacesContext.getCurrentInstance();
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void selecionados(int tam) {
-		selecionados = new ArrayList();
-		for (int i = 0; i < tam; i++)
-			selecionados.add(false);
-	}
-
 	public ControllerConsulta() throws DaoException,
-			ConsultaSemResultadoException, JsonParseException, IOException, JSONException {
+			ConsultaSemResultadoException, JsonParseException, IOException,
+			JSONException {
 		uri = new URI();
-		sensoresSelecionados = new ArrayList<Sensor>();
+		list_pcds = new ArrayList<PCD>();
 	}
 
 	public String buscar() {
@@ -60,16 +52,18 @@ public class ControllerConsulta {
 		return "BUSCAR_POR_PCD";
 	}
 
-	@SuppressWarnings("unchecked")
 	public String consultar_pcd() throws DaoException,
-			ConsultaSemResultadoException, JsonParseException, IOException, JSONException {
-		pcds = (List<PCD>) servicoConsulta.consulta(uri);
-//		selecionados(pcds.size());
+			ConsultaSemResultadoException, JsonParseException, IOException,
+			JSONException {
+		list_pcds = servicoConsulta.consulta(uri);
+		for (int i = 0; i < list_pcds.size(); i++) {
+			for (int j = 0; j < list_pcds.get(0).getSensores().size(); j++) {
+				System.out.println(list_pcds.get(i).getSensores().get(j).getSensor_id());
+			}
+			
+		}
+		
 		return "Visualizar";
-	}
-
-	public List<Sensor> getSensoresSelecionados() {
-		return sensoresSelecionados;
 	}
 
 	public boolean isBuscou() {
@@ -84,22 +78,18 @@ public class ControllerConsulta {
 		this.uri = uri;
 	}
 
-	public List<PCD> getPCDs() {
-		return pcds;
+	public PCD getPcd() {
+		return pcd;
 	}
 
-	public void setPCDs(List<PCD> pcds) {
-		this.pcds = pcds;
+	public void setPcd(PCD pcd) {
+		this.pcd = pcd;
 	}
 
 	public void setBuscou(boolean buscou) {
 		this.buscou = buscou;
 	}
 
-	public void setUsuarioSelecionados(List<Sensor> sensoresSelecionados) {
-		this.sensoresSelecionados = sensoresSelecionados;
-	}
-	
 	public Proprietario getProprietario() {
 		return proprietario;
 	}
@@ -107,4 +97,13 @@ public class ControllerConsulta {
 	public void setProprietario(Proprietario proprietario) {
 		this.proprietario = proprietario;
 	}
+	
+	public List<PCD> getList_pcds() {
+		return list_pcds;
+	}
+	
+	public void setList_pcds(List<PCD> list_pcds) {
+		this.list_pcds = list_pcds;
+	}
+	
 }

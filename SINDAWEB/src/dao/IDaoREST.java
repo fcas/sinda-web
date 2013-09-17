@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.IOException;
+import java.util.List;
 
 import model.PCD;
 import model.URI;
@@ -32,7 +33,7 @@ public interface IDaoREST {
 	 * @throws JSONException
 	 */
 
-	public PCD consulta(URI uri) throws DaoException,
+	public List<PCD> consulta(URI uri) throws DaoException,
 			ConsultaSemResultadoException, JsonParseException, IOException,
 			JSONException;
 
