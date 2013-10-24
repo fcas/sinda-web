@@ -59,8 +59,7 @@ public class ControllerConsulta {
 		for (int i = 0; i < list_pcds.size(); i++) {
 			for (int j = 0; j < list_pcds.get(0).getSensores().size(); j++) {
 				System.out.println(list_pcds.get(i).getSensores().get(j).getSensor_id());
-			}
-			
+			}		
 		}
 		
 		return "Visualizar";

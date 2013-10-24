@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Sensor {
 
 	private int sensor_id;
@@ -11,6 +13,8 @@ public class Sensor {
 	private Double inicioBits;
 	private String dataHoraReferencia;
 	private String posicao;
+	private String timeStamp;
+	private List<Double> valoresSensor;
 
 	public int getSensor_id() {
 		return sensor_id;
@@ -82,6 +86,22 @@ public class Sensor {
 
 	public void setPosicao(String posicao) {
 		this.posicao = posicao;
+	}
+
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public List<Double> getValoresSensor() {
+		return valoresSensor;
+	}
+
+	public void setValoresSensor(List<Double> valoresSensor) {
+		this.valoresSensor = valoresSensor;
 	}
 
 }

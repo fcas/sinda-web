@@ -33,8 +33,12 @@ public class URI {
 		this.format = format;
 	}
 	
-	public String getURIpcd() {
+	public String getURI_infoPCD() {
 		return URI+"pcd?pcd="+pcd;
+	}
+	
+	public String getURI_dadosPCD() {
+		return URI+"dados?pcd="+pcd;
 	}
 	
 	public String getURIfull() {
