@@ -7,10 +7,17 @@
         <nestedClassifier xmi:type="uml:Class" xmi:id="_WvqWMEPPEeOiJs37F_tFKg" name="Integridade"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_V-5AkEPPEeOiJs37F_tFKg" name="Disponibilidade"/>
       </nestedClassifier>
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_IvNQAEPLEeOiJs37F_tFKg" name="Perfomance"/>
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_qhLgQEPMEeOiJs37F_tFKg" name="Usabilidade"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_IvNQAEPLEeOiJs37F_tFKg" name="Desempenho"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_qhLgQEPMEeOiJs37F_tFKg" name="Usabilidade">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_3JaH4EPTEeOiJs37F_tFKg" name="Tolerância a erros do usuário"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_MmIIIEPUEeOiJs37F_tFKg" name="Feedback"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_Ei1AEEPUEeOiJs37F_tFKg" name="Interface Amigável"/>
+      </nestedClassifier>
       <nestedClassifier xmi:type="uml:Class" xmi:id="_JrDNMEPLEeOiJs37F_tFKg" name="Tolerância a falhas"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_vGbTcEPUEeOiJs37F_tFKg" name="Portabilidade"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_NcY3MEPTEeOiJs37F_tFKg" name="Package1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-9bBUEPUEeOiJs37F_tFKg" name="Consultas"/>
     <profileApplication xmi:id="_S6MFAEPFEeOsnc5KBJgwHw">
       <eAnnotations xmi:id="_S6MFAUPFEeOsnc5KBJgwHw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
@@ -78,14 +85,20 @@
       <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
     </profileApplication>
   </uml:Model>
-  <Requirements:Requirement xmi:id="_F7vC0EPLEeOiJs37F_tFKg" base_Class="_F1X8IEPLEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_IvXBAEPLEeOiJs37F_tFKg" base_Class="_IvNQAEPLEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_JrZygEPLEeOiJs37F_tFKg" base_Class="_JrDNMEPLEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_qhmXAEPMEeOiJs37F_tFKg" base_Class="_qhLgQEPMEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_O3m00EPPEeOiJs37F_tFKg" base_Class="_O3T54EPPEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_V_UeYEPPEeOiJs37F_tFKg" base_Class="_V-5AkEPPEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_WwBikEPPEeOiJs37F_tFKg" base_Class="_WvqWMEPPEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_F7vC0EPLEeOiJs37F_tFKg" text="" id="2" base_Class="_F1X8IEPLEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_IvXBAEPLEeOiJs37F_tFKg" text="" id="3" base_Class="_IvNQAEPLEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_JrZygEPLEeOiJs37F_tFKg" id="6" base_Class="_JrDNMEPLEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_qhmXAEPMEeOiJs37F_tFKg" id="4" base_Class="_qhLgQEPMEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_O3m00EPPEeOiJs37F_tFKg" text="" id="2.2" base_Class="_O3T54EPPEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_V_UeYEPPEeOiJs37F_tFKg" text="Os dados do sistema devem estar sempre disponíveis para o usuário autorizado" id="2.1" base_Class="_V-5AkEPPEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_WwBikEPPEeOiJs37F_tFKg" text="Os dados armazenados devem manter todas as características originais e não deformados" id="2.3" base_Class="_WvqWMEPPEeOiJs37F_tFKg"/>
   <Requirements:DeriveReqt xmi:id="_a65nkEPPEeOiJs37F_tFKg"/>
   <Requirements:DeriveReqt xmi:id="_bj3FAEPPEeOiJs37F_tFKg"/>
-  <Requirements:Requirement xmi:id="_kxQBoEPPEeOiJs37F_tFKg" base_Class="_kw6DYEPPEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_kxQBoEPPEeOiJs37F_tFKg" text="" id="1" base_Class="_kw6DYEPPEeOiJs37F_tFKg"/>
+  <Requirements:Satisfy xmi:id="_LwKl8EPTEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_3JtC0EPTEeOiJs37F_tFKg" text="O sistema deve ser tolerante aos erros que o usuário comete na interface" id="4.1" base_Class="_3JaH4EPTEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_EjH7AEPUEeOiJs37F_tFKg" text="A interface do sistema deve ser satisfazer o usuário" id="4.2" base_Class="_Ei1AEEPUEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_MmbDEEPUEeOiJs37F_tFKg" text="O sistema deve fornecer feedback do estado do sistema em caso de exceção ou de operações que demorem mais de 1 segundo pra serem executadas" id="4.3" base_Class="_MmIIIEPUEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_vGwDkEPUEeOiJs37F_tFKg" text="O Sistema deve ser acessível em dispositivos móveis" id="5" base_Class="_vGbTcEPUEeOiJs37F_tFKg"/>
+  <Requirements:Requirement xmi:id="_-9zb0EPUEeOiJs37F_tFKg" base_Class="_-9bBUEPUEeOiJs37F_tFKg"/>
 </xmi:XMI>
