@@ -272,7 +272,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O3aAjkPPEeOiJs37F_tFKg"/>
     </children>
     <element xmi:type="uml:Class" href="requisitos.uml#_O3T54EPPEeOiJs37F_tFKg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O3YyYUPPEeOiJs37F_tFKg" x="55" y="275"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O3YyYUPPEeOiJs37F_tFKg" x="70" y="285"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_V-_uQEPPEeOiJs37F_tFKg" type="shape_sysml_requirement_as_classifier">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_V_WTkEPPEeOiJs37F_tFKg" source="Stereotype_Annotation">
@@ -372,7 +372,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WvySCUPPEeOiJs37F_tFKg"/>
     </children>
     <element xmi:type="uml:Class" href="requisitos.uml#_WvqWMEPPEeOiJs37F_tFKg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WvxD4UPPEeOiJs37F_tFKg" x="205" y="275"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WvxD4UPPEeOiJs37F_tFKg" x="240" y="285"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_kxAxEEPPEeOiJs37F_tFKg" type="shape_sysml_requirement_as_classifier">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kxQosEPPEeOiJs37F_tFKg" source="Stereotype_Annotation">
