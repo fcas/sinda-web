@@ -1,44 +1,76 @@
-package dao;
+package gateway;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import model.Latitude;
+import model.Longitude;
 import model.PCD;
+import model.Proprietario;
 import model.Sensor;
 import model.URI;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import services.ServicoConsulta;
+
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import exceptions.DaoException;
 
-public class DaoREST_dados {
-	
-	private PCD pcd;
-	private List<PCD> list_pcds;
-	private static DaoREST singleton = null;
-	private Sensor sensor;
+public class GatewayRest implements IGatewayRest {
 
-	public DaoREST_dados() {
+	private PCD pcd;
+	private List<PCD> pcds_auxiliar;
+	private List<PCD> pcds;
+	private static GatewayRest singleton = null;
+	private Sensor sensor;
+	private InputStream is;
+	private BufferedReader rd;
+	private String jsonText;
+	private JSONObject json;
+
+	public GatewayRest() {
 		this.pcd = new PCD();
-		this.list_pcds = new ArrayList<PCD>();
+		this.pcds_auxiliar = new ArrayList<PCD>();
+		this.pcds = new ArrayList<PCD>();
 	}
 
-	public static DaoREST getInstance() {
+	public static GatewayRest getInstance() {
 
 		if (singleton == null) {
-			singleton = new DaoREST();
+			singleton = new GatewayRest();
 		}
 
 		return singleton;
@@ -56,17 +88,39 @@ public class DaoREST_dados {
 
 	public List<PCD> consulta(URI uri) throws JsonParseException, IOException,
 			JSONException {
-		InputStream is = new URL(uri.getURI_infoPCD()).openStream();
+		is = new URL(uri.getURI_infoPCD()).openStream();
 		try {
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
+			rd = new BufferedReader(new InputStreamReader(is,
 					Charset.forName("UTF-8")));
-			String jsonText = readAll(rd);
-			JSONObject json = new JSONObject(jsonText);
-			return processar_pcd(json);
+			jsonText = readAll(rd);
+			json = new JSONObject(jsonText);
+			pcds = processar_pcd(json);
+			consulta_sensores_dados(uri, pcds);
+			return pcds;
 		} finally {
 			is.close();
+			rd.close();
 		}
 
+	}
+
+	private void consulta_sensores_dados(URI uri, List<PCD> pcds2)
+			throws MalformedURLException, IOException, JSONException {
+		is = new URL(uri.getURI_dadosPCD()).openStream();
+		try {
+			rd = new BufferedReader(new InputStreamReader(is,
+					Charset.forName("UTF-8")));
+			jsonText = readAll(rd);
+			json = new JSONObject(jsonText);
+			processar_sensores_dados(json);
+		} finally {
+			is.close();
+			rd.close();
+		}
+	}
+
+	private void processar_sensores_dados(JSONObject json2) {
+		System.out.println(json);
 	}
 
 	private List<PCD> processar_pcd(JSONObject json) throws JSONException {
@@ -121,9 +175,9 @@ public class DaoREST_dados {
 
 		pcd.setSensores(processar_sensores(json.getJSONArray("sensores")));
 
-		list_pcds.add(pcd);
+		pcds_auxiliar.add(pcd);
 
-		return list_pcds;
+		return pcds_auxiliar;
 	}
 
 	private HashMap<Integer, Sensor> processar_sensores(JSONArray sensores)

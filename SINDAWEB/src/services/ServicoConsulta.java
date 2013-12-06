@@ -1,23 +1,26 @@
-package model;
+package services;
 
 import java.io.IOException;
 import java.util.List;
+
+import model.PCD;
+import model.URI;
 
 import org.primefaces.json.JSONException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
-import dao.ConsultaSemResultadoException;
-import dao.DaoREST;
-import dao.IDaoREST;
 import exceptions.DaoException;
+import gateway.ConsultaSemResultadoException;
+import gateway.GatewayRest;
+import gateway.IGatewayRest;
 
 public class ServicoConsulta implements IServicoConsulta {
 
 	private static ServicoConsulta singleton = null;
 
 	@SuppressWarnings("unused")
-	private IDaoREST dao;
+	private IGatewayRest dao;
 
 	public ServicoConsulta() {
 
@@ -37,7 +40,7 @@ public class ServicoConsulta implements IServicoConsulta {
 	public List<PCD> consulta(URI uri) throws DaoException,
 			ConsultaSemResultadoException, JsonParseException, IOException, JSONException {
 
-		return DaoREST.getInstance().consulta(uri);
+		return GatewayRest.getInstance().consulta(uri);
 	}
 
 }
