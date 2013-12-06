@@ -1,4 +1,4 @@
-package dao;
+package gateway;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 
 import exceptions.DaoException;
 
-public interface IDaoREST {
+public interface IGatewayRest {
 
 	/**
 	 * public void cadastrar(T entidade) throws DaoException;

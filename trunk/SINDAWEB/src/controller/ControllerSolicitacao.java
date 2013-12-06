@@ -3,10 +3,10 @@ package controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import services.IServicoSolicitacao;
+import services.ServicoSolicitacao;
 import exceptions.DaoException;
 import model.Formulario;
-import model.IServicoSolicitacao;
-import model.ServicoSolicitacao;
 
 /**
  * @author felipecordeiro

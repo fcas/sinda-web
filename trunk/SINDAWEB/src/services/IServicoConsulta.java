@@ -1,14 +1,17 @@
-package model;
+package services;
 
 import java.io.IOException;
 import java.util.List;
+
+import model.PCD;
+import model.URI;
 
 import org.primefaces.json.JSONException;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
-import dao.ConsultaSemResultadoException;
 import exceptions.DaoException;
+import gateway.ConsultaSemResultadoException;
 
 public interface IServicoConsulta {
 

@@ -1,8 +1,8 @@
 package controller;
 
+import services.IServicoSolicitacao;
+import services.ServicoSolicitacao;
 import model.Formulario;
-import model.IServicoSolicitacao;
-import model.ServicoSolicitacao;
 
 /**
  * @author felipecordeiro

@@ -10,14 +10,15 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.json.JSONException;
 
+import services.IServicoConsulta;
+import services.ServicoConsulta;
+
 import com.fasterxml.jackson.core.JsonParseException;
 
-import dao.ConsultaSemResultadoException;
 import exceptions.DaoException;
-import model.IServicoConsulta;
+import gateway.ConsultaSemResultadoException;
 import model.PCD;
 import model.Proprietario;
-import model.ServicoConsulta;
 import model.URI;
 
 /**
